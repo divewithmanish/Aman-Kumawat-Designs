@@ -3,8 +3,25 @@
     --primary: #B78D65;
     --light: #F8F8F8;
     --dark: #252525;
+    --bg-light: #FFFFFF;
+    --bg-dark: #2C2C2C;
+    --text-light: #F8F8F8;
+    --text-dark: #252525;
 }
 
+/*** Light Theme ***/
+body.light-theme {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/*** Dark Theme ***/
+body.dark-theme {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+}
+
+/*** Headings ***/
 h1,
 h2,
 .h1,

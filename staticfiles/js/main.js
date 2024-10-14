@@ -10,8 +10,8 @@
         }, 1);
     };
     spinner();
-    
-    
+
+
     // Initiate the wowjs
     new WOW().init();
 
@@ -24,8 +24,8 @@
             $('.sticky-top').removeClass('shadow-sm').css('top', '-100px');
         }
     });
-    
-    
+
+
     // Back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
@@ -35,7 +35,7 @@
         }
     });
     $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+        $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
         return false;
     });
 
@@ -79,6 +79,50 @@
         dotsData: true,
     });
 
-    
+    document.addEventListener("DOMContentLoaded", function () {
+        const body = document.body;
+        const themeSwitcher = document.getElementById('theme-switcher'); // Theme switcher button
+        const themeIcon = document.getElementById('theme-icon'); // Icon inside the button
+
+        // Check if theme switcher button is available
+        if (!themeIcon) {
+            console.error("Theme switcher button not found");
+            return;
+        }
+
+        // Get saved theme from localStorage, or default to 'light'
+        const savedTheme = localStorage.getItem('theme') || 'light';
+
+        // Set the default theme class on body
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-theme');  // Apply dark theme class
+            themeIcon.classList.add('fa-sun'); // Change icon to sun
+            themeIcon.classList.remove('fa-moon'); // Remove moon icon
+        } else {
+            body.classList.add('light-theme'); // Apply light theme class (default)
+            themeIcon.classList.add('fa-moon'); // Default icon is moon
+            themeIcon.classList.remove('fa-sun');
+        }
+
+        // Add event listener to switch themes when the button is clicked
+        themeSwitcher.addEventListener('click', function () {
+            // Toggle between light and dark theme
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+                themeIcon.classList.add('fa-moon'); // Switch to moon icon
+                themeIcon.classList.remove('fa-sun');
+                localStorage.setItem('theme', 'light');  // Save preference
+            } else {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+                themeIcon.classList.add('fa-sun'); // Switch to sun icon
+                themeIcon.classList.remove('fa-moon');
+                localStorage.setItem('theme', 'dark');   // Save preference
+            }
+        });
+    });
+
+
 })(jQuery);
 
